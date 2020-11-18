@@ -1,0 +1,119 @@
+{
+  "SecurityGroups": [
+    {
+      "Description": "Test Access",
+      "GroupId": "sg-618ac7cb0d1f7d923",
+      "GroupName": "test-access",
+      "IpPermissions": [
+        {
+          "FromPort": 11001,
+          "IpProtocol": "tcp",
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": [],
+          "ToPort": 11001,
+          "UserIdGroupPairs": [
+            {
+              "Description": "test1 ",
+              "GroupId": "sg-e9697408a47015c2a",
+              "PeeringStatus": "active",
+              "UserId": "483483734324",
+              "VpcId": "vpc-661c382221cdd0800",
+              "VpcPeeringConnectionId": "pcx-8571ae9c5d6e2df8e"
+            },
+            {
+              "Description": "test2 ",
+              "GroupId": "sg-87e2191bbb888f162",
+              "PeeringStatus": "active",
+              "UserId": "483483734324",
+              "VpcId": "vpc-2af927fed51ed7686",
+              "VpcPeeringConnectionId": "pcx-5efd2392f4d90a18c"
+            }
+          ]
+        },
+        {
+          "FromPort": 11002,
+          "IpProtocol": "tcp",
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": [],
+          "ToPort": 11002,
+          "UserIdGroupPairs": [
+            {
+              "Description": "test3 ",
+              "GroupId": "sg-f22cea4be3feaec90",
+              "PeeringStatus": "active",
+              "UserId": "483483734324",
+              "VpcId": "vpc-661c382221cdd0800",
+              "VpcPeeringConnectionId": "pcx-8571ae9c5d6e2df8e"
+            },
+            {
+              "Description": "test4 ",
+              "GroupId": "sg-9cbc5f12687c27c4c",
+              "PeeringStatus": "active",
+              "UserId": "483483734324",
+              "VpcId": "vpc-2af927fed51ed7686",
+              "VpcPeeringConnectionId": "pcx-5efd2392f4d90a18c"
+            }
+          ]
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0",
+              "Description": "Allows all egress"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": [],
+          "UserIdGroupPairs": []
+        }
+      ],
+      "OwnerId": "483483734324",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "Test5"
+        }
+      ],
+      "VpcId": "vpc-e105784a8997da461"
+    },
+    {
+      "Description": "Test Access 2",
+      "GroupId": "sg-2b49d04cef8c8627a",
+      "GroupName": "test-access-2",
+      "IpPermissions": [
+        {
+          "FromPort": 443,
+          "IpProtocol": "tcp",
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0",
+              "Description": "Allow ingress on port 443 "
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": [],
+          "ToPort": 443,
+          "UserIdGroupPairs": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": [],
+          "UserIdGroupPairs": []
+        }
+      ]
+    }
+  ]
+}

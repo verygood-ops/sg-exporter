@@ -1,0 +1,6 @@
+*.py[co]
+build/*
+dist/*
+.idea/*
+venv/*
+*.egg-info/*
