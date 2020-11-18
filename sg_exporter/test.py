@@ -24,7 +24,7 @@ class SGExporterTest(unittest.TestCase):
     def test_export_sg_content(self, ec2_describe_sg):
         import sg_exporter.security_groups
 
-        removed_keys = sg_exporter.security_groups.update_security_groups(sg_exporter.sec_groups)
+        removed_keys = sg_exporter.security_groups.update_security_groups(sg_exporter.sec_groups, None)
         sg_exporter.security_groups.export_security_groups(sg_exporter.sec_groups, removed_keys)
         metrics = prometheus_client.exposition.generate_latest().decode().splitlines()
 

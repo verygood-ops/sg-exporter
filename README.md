@@ -30,6 +30,8 @@ Configuration & Authentication
 `sg-exporter` uses `boto3` internally, so its configuration
 [docs](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html) apply to this software.
 
+Pass `SG_EXPORTER_ASSUME_ROLE_ARN` to assume particular role when retrieving data.
+
 Testing
 -------
 

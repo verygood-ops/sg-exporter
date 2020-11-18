@@ -1,13 +1,34 @@
+import socket
+import time
+
 import boto3
 import prometheus_client
 
 
 client = None
+assume_role_state = {}
 
 
-def ec2():
+def ec2(assume_role_arn, aws_region):
     global client
-    if client is None:
+    if assume_role_arn and\
+            ('renewal' not in assume_role_state or time.time() - assume_role_state.get('renewal', 0) > 3000):
+        s = boto3.Session()
+        sts = s.client('sts')
+        assume_role_object = sts.assume_role(
+                RoleArn=assume_role_arn,
+                RoleSessionName=f'sg-exporter-{socket.gethostname()}',
+                DurationSeconds=3600
+        )
+        client = boto3.client(
+                'ec2',
+                aws_access_key_id=assume_role_object['Credentials']['AccessKeyId'],
+                aws_secret_access_key=assume_role_object['Credentials']['SecretAccessKey'],
+                aws_session_token=assume_role_object['Credentials']['SessionToken'],
+                region_name=aws_region,
+        )
+        assume_role_state['renewal'] = time.time()
+    elif client is None:
         client = boto3.client('ec2')
     return client
 
