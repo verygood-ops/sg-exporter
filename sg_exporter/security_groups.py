@@ -12,8 +12,17 @@ rule_ip_range_mapping = collections.defaultdict(list)
 rule_groups_mapping = collections.defaultdict(list)
 
 
-def update_security_groups(group_container):
-    """Update given security group container with SG data."""
+def update_security_groups(group_container, assume_role_arn, aws_region):
+    """Update given security group container with SG data.
+
+    :param group_container: A group container to use for tracking SG dataset.
+    :type  group_container: dict
+
+    :param assume_role_arn: A role ARN to use when assuming (optional).
+    :param aws_region: An AWS region to use when assuming (optional).
+
+    :rtype: set
+    """
     removed_copies = copy.copy(group_container)
     next_token = None
     max_results = 500
@@ -21,7 +30,7 @@ def update_security_groups(group_container):
         params = {'MaxResults': max_results}
         if next_token:
             params['NextToken'] = next_token
-        group_data = sg_exporter.ec2().describe_security_groups(**params)
+        group_data = sg_exporter.ec2(assume_role_arn, aws_region).describe_security_groups(**params)
         for group in group_data['SecurityGroups']:
             group_id = group['GroupId']
             if group_id in group_container:
